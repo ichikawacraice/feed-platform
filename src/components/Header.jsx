@@ -1,4 +1,4 @@
-import styles from './style.module.css'
+import styles from './Header.module.css'
 
 import igniteLogo from '/src/assets/img/logo.svg'
 
