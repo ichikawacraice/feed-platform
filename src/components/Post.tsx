@@ -4,9 +4,26 @@ import { Comment } from './Comment'
 import { Avatar } from './Avatar'
 
 import styles from './Post.module.css'
-import { useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 
-export function Post({ author, publishedAt, content }) {
+interface Author {
+	name: string
+	role: string
+	avatarUrl: string
+}
+
+interface Content {
+	type: string
+	content: string
+}
+
+interface PostProps {
+	author: Author
+	publishedAt: Date
+	content: Content[]
+}
+
+export function Post({ author, publishedAt, content }: PostProps) {
 	const [comments, setComments] = useState(['Post muito bacana hein?!'])
 	const [newCommentText, setNewCommentText] = useState('')
 
@@ -17,23 +34,20 @@ export function Post({ author, publishedAt, content }) {
 		addSuffix: true
 	})
 
-	function handleCreateNewComment() {
+	function handleCreateNewComment(event: FormEvent) {
 		event.preventDefault()
 
 		setComments([...comments, newCommentText])
 		setNewCommentText('')
 	}
 
-	function handleNewCommentChange() {
-		event.target.setCustomValidity('')
+	function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) {
 		setNewCommentText(event.target.value)
 	}
 
-	function handleNewCommentInvalide() {
-		event.target.setCustomValidity('Po bixo, digita algo né?!')
-	}
+	function handleNewCommentInvalide() {}
 
-	function deleteComment(commentToDelete) {
+	function deleteComment(commentToDelete: string) {
 		const commentWithoutDeletedOne = comments.filter((comment) => {
 			return !comment.includes(commentToDelete)
 		})
@@ -82,7 +96,9 @@ export function Post({ author, publishedAt, content }) {
 				/>
 
 				<footer>
-					<button type='submit' disabled={!newCommentText.length}>Publicar</button>
+					<button type='submit' disabled={!newCommentText.length}>
+						Publicar
+					</button>
 				</footer>
 			</form>
 

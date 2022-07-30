@@ -11,8 +11,7 @@ export function Sidebar() {
 			/>
 
 			<div className={styles.profile}>
-        <Avatar src="https://github.com/ichikawacraice.png" />
-
+				<Avatar src='https://github.com/ichikawacraice.png' />
 
 				<strong>Gabriel Ichikawa</strong>
 				<span>Web Developer</span>
@@ -20,9 +19,9 @@ export function Sidebar() {
 
 			<footer>
 				<a href='#'>
-          <PencilLine size={20} />
-          Editar seu perfil
-        </a>
+					<PencilLine size={20} />
+					Editar seu perfil
+				</a>
 			</footer>
 		</aside>
 	)
